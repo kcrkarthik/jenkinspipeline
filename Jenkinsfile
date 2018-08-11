@@ -8,6 +8,9 @@ pipeline
 		{
 			steps 
 			{
+				echo %PATH%
+				java -version
+				echo %HAVA_HOME%
 				bat 'mvn clean package'
 			}
 			post 
