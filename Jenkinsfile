@@ -1,24 +1,39 @@
-pipeline {
-			agent any
+pipeline
+{
+	agent any
 
-			stages
+	stages
+	{
+		stage('Compile Code')
+		{
+			steps 
+			{
+				sh 'mvn clean package'
+			}
+			post 
+			{
+                success 
 				{
-					stage('INIT'){
-						steps {
-							echo "INIT"
-						}
-					}
-
-					stage('BUILD'){
-						steps {
-							echo "BUILD"
-						}
-					}
-					
-					stage('DEPLOY'){
-						steps {
-							echo "DEPLOY"
-						}
-					}
+                    echo 'Maven Build Success. Moving WAR to Archive...'
+                    archiveArtifacts artifacts: '**/target/*.war'
 				}
+			}
+		}
+
+		stage('Deploy to Staging')
+		{
+			steps 
+			{
+				echo "BUILD"
+			}
+		}
+		
+		stage('Deploy to Prod')
+		{
+			steps 
+			{
+				echo "DEPLOY"
+			}
+		}
+	}
 }
