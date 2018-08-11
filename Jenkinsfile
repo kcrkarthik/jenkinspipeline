@@ -8,9 +8,8 @@ pipeline
 		{
 			steps 
 			{
-				bat 'echo %PATH%'
-				bat 'java -version'
-				bat 'echo %HAVA_HOME%'
+				env.JAVA_HOME="${tool 'jdk-8u151'}"
+				env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
 				bat 'mvn clean package'
 			}
 			post 
