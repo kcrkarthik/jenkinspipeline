@@ -8,8 +8,8 @@ pipeline
 		{
 			steps 
 			{
-				env.JAVA_HOME="${tool 'jdk-8u151'}"
-				env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+				bat 'set JAVA_HONE=C:\Program Files\Java\jdk1.8.0_151'
+				bat 'set PATH=%PATH%;C:\Program Files\Java\jdk1.8.0_151\bin'
 				bat 'mvn clean package'
 			}
 			post 
