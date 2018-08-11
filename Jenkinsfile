@@ -8,8 +8,8 @@ pipeline
 		{
 			steps 
 			{
-				bat 'set JAVA_HONE=C:/Program Files/Java/jdk1.8.0_151'
-				bat 'set PATH=%PATH%;C:/Program Files/Java/jdk1.8.0_151/bin'
+				bat 'set JAVA_HONE=C:\\Program Files\\Java\\jdk1.8.0_151'
+				bat 'set PATH=%PATH%;C:\\Program Files\\Java\\jdk1.8.0_151\\bin'
 				bat 'mvn clean package'
 			}
 			post 
