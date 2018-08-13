@@ -14,10 +14,10 @@ pipeline
 			}
 			post 
 			{
-                success 
+                		success 
 				{
-                    echo 'Maven Build Success. Moving WAR to Archive...'
-                    archiveArtifacts artifacts: '**/target/*.war'
+                    			echo 'Maven Build Success. Moving WAR to Archive...'
+                    			archiveArtifacts artifacts: '**/target/*.war'
 				}
 			}
 		}
@@ -27,6 +27,7 @@ pipeline
 			steps 
 			{
 				echo "BUILD"
+				build job: 'Deploy to Staging Tomcat'
 			}
 		}
 		
