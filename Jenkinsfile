@@ -36,6 +36,24 @@ pipeline
 			steps 
 			{
 				echo "DEPLOY"
+				
+				timeout(time:5, unit:days")
+				{
+					input message:'IS PROD DEPLOYMENT APPROVED???'
+				}
+				
+				build job: 'Deploy to Production ' 
+			}
+			post
+			{
+				success
+				{
+					echo 'Code deployed to prod'
+				}
+				failure
+				{
+					echo 'Code deployed to prod FAILED'
+				}
 			}
 		}
 	}
