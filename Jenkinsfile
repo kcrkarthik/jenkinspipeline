@@ -37,7 +37,7 @@ pipeline
 			{
 				echo "DEPLOY"
 				
-				timeout(time:5, unit:'DAYS')
+				timeout(time:120, unit:'SECONDS')
 				{
 					input message:'IS PROD DEPLOYMENT APPROVED???'
 				}
