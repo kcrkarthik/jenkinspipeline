@@ -39,7 +39,7 @@ pipeline
 				{
 					steps
 					{
-						bat "C:/cmder/vendor/git-for-windows/usr/bin/scp.exe -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' 'C:/Program Files (x86)/Jenkins/workspace/FullyAutomatedWithAWS/webapp/target/webapp.war' ec2-user@${params.staging_tomcat}:/var/lib/tomcat7/webapps"
+						bat "C:/cmder/vendor/git-for-windows/usr/bin/scp.exe -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' -o StrictHostKeyChecking=no 'C:/Program Files (x86)/Jenkins/workspace/FullyAutomatedWithAWS/webapp/target/webapp.war' ec2-user@${params.staging_tomcat}:/var/lib/tomcat7/webapps"
 					}
 				}
 				
