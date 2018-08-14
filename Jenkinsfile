@@ -1,60 +1,32 @@
 pipeline
 {
 	agent any
-
-	stages
+	
+	parameters
 	{
-		stage('Compile Code')
-		{
-			steps 
-			{
-				bat 'set JAVA_HONE=C:\\Program Files\\Java\\jdk1.8.0_151'
-				bat 'set PATH=%PATH%;C:\\Program Files\\Java\\jdk1.8.0_151\\bin'
-				bat 'mvn clean package'
-			}
-			post 
-			{
-                		success 
-				{
-                    			echo 'Maven Build Success. Moving WAR to Archive...'
-                    			archiveArtifacts artifacts: '**/target/*.war'
-				}
-			}
-		}
+		string(name: 'staging-tomcat', defaultValue:'13.232.202.242', description:'Tomcat instance for Staging')
+		string(name: 'prod-tomcat', defaultValue:'13.233.12.14', description:'Tomcat instance for Production')
+	}
+	
+	triggers
+	{
+		pollSCM('* * * * *')
+	}
 
-		stage('Deploy to Staging')
+	stage('Deployments')
+	{
+		parallel
 		{
-			steps 
+			stage('Deploy to STAGE')
 			{
-				echo "BUILD"
-				build job: 'Deploy to Staging Tomcat'
+				sh "cp -i 'C:\Users\kchokkar\Downloads\MyEc2Pair.pem' **/target.war ec2-user@{params.staging-tomcat}:/var/lib/tomcat7/webapps"
 			}
-		}
-		
-		stage('Deploy to Prod')
-		{
-			steps 
+			
+			stage('Deploy to PROD')
 			{
-				echo "DEPLOY"
-				
-				timeout(time:120, unit:'SECONDS')
-				{
-					input message:'IS PROD DEPLOYMENT APPROVED???'
-				}
-				
-				build job: 'Deploy to Production ' 
+				sh "cp -i 'C:\Users\kchokkar\Downloads\MyEc2Pair.pem' **/target.war ec2-user@{params.prod-tomcat}:/var/lib/tomcat7/webapps"
 			}
-			post
-			{
-				success
-				{
-					echo 'Code deployed to prod'
-				}
-				failure
-				{
-					echo 'Code deployed to prod FAILED'
-				}
-			}
+			
 		}
 	}
 }
