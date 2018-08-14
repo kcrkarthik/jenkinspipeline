@@ -39,7 +39,7 @@ pipeline
 				{
 					steps
 					{
-						bat "cp -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' **/target.war ec2-user@${params.staging_tomcat}:/var/lib/tomcat7/webapps"
+						bat "c:\cmder\Cmder cp -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' **/target.war ec2-user@${params.staging_tomcat}:/var/lib/tomcat7/webapps"
 					}
 				}
 				
@@ -47,7 +47,7 @@ pipeline
 				{
 					steps
 					{
-						bat "cp -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' **/target.war ec2-user@${params.prod_tomcat}:/var/lib/tomcat7/webapps"
+						bat "c:\cmder\Cmder cp -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' **/target.war ec2-user@${params.prod_tomcat}:/var/lib/tomcat7/webapps"
 					}
 				}
 				
