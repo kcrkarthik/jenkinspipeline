@@ -35,12 +35,18 @@ pipeline
 		{
 			stage('Deploy to STAGE')
 			{
-				sh "cp -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' **/target.war ec2-user@${params.staging-tomcat}:/var/lib/tomcat7/webapps"
+				steps
+				{
+					sh "cp -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' **/target.war ec2-user@${params.staging-tomcat}:/var/lib/tomcat7/webapps"
+				}
 			}
 			
 			stage('Deploy to PROD')
 			{
-				sh "cp -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' **/target.war ec2-user@${params.prod-tomcat}:/var/lib/tomcat7/webapps"
+				steps
+				{
+					sh "cp -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' **/target.war ec2-user@${params.prod-tomcat}:/var/lib/tomcat7/webapps"
+				}
 			}
 			
 		}
