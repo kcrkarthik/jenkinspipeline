@@ -39,7 +39,8 @@ pipeline
 				{
 					steps
 					{
-						bat "c:/cmder/Cmder scp -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' 'C:/Program Files (x86)/Jenkins/workspace/FullyAutomatedWithAWS/webapp/target/webapp.war' ec2-user@${params.staging_tomcat}:/var/lib/tomcat7/webapps"
+						bat "c:/cmder/Cmder"
+						bat "scp -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' 'C:/Program Files (x86)/Jenkins/workspace/FullyAutomatedWithAWS/webapp/target/webapp.war' ec2-user@${params.staging_tomcat}:/var/lib/tomcat7/webapps"
 					}
 				}
 				
@@ -47,7 +48,8 @@ pipeline
 				{
 					steps
 					{
-						bat "c:/cmder/Cmder scp -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' 'C:/Program Files (x86)/Jenkins/workspace/FullyAutomatedWithAWS/webapp/target/webapp.war' ec2-user@${params.prod_tomcat}:/var/lib/tomcat7/webapps"
+						bat "c:/cmder/Cmder"
+						bat "scp -i 'C:/Users/kchokkar/Downloads/MyEc2Pair.pem' 'C:/Program Files (x86)/Jenkins/workspace/FullyAutomatedWithAWS/webapp/target/webapp.war' ec2-user@${params.prod_tomcat}:/var/lib/tomcat7/webapps"
 					}
 				}
 				
