@@ -12,6 +12,22 @@ pipeline
 	{
 		pollSCM('* * * * *')
 	}
+	
+	stage('Compile Code')
+	{
+		steps 
+		{
+			bat 'mvn clean package'
+		}
+		post 
+		{
+			success 
+			{
+							echo 'Maven Build Success. Moving WAR to Archive...'
+							archiveArtifacts artifacts: '**/target/*.war'
+			}
+		}
+	}
 
 	stage('Deployments')
 	{
